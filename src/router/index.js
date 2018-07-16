@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import MainPage from '@/MainPage/MainPage'
+import MainPage from '@/pages/MainPage/MainPage'
 
 Vue.use(Router)
 
