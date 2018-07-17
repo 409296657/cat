@@ -19,4 +19,8 @@ body{
   width: 100%;
   min-width: 1200px;
 }
+a{
+  color: #000;
+  text-decoration: none;
+}
 </style>

@@ -9,13 +9,16 @@
                         <small>每一只猫猫都被爱 为ta寻找港湾</small>
                     </div>
                     <div class="list">
-                        <div class="btn" 
-                            v-for="(item,index) in btnList" 
-                            :key="index" 
-                            @click="choose(index)" 
+                        <router-link
+                            v-for="(item,index) in btnList"
+                            :to="{ path:item.address }"
+                            :key="index"
                             :class="{active:index==isActive}">
-                        {{ item.text }}
-                        </div>
+                            <div class="btn">
+                                {{ item.text }}
+                            </div>
+                        </router-link>
+                        
                     </div>
                 </div>
                 <div class="user">
@@ -30,16 +33,18 @@
 <script>
 export default {
     name: "MainPage",
-    components: {},
+    components: {
+
+    },
+    props:['isActive'],
     data() {
         return {
-        isActive: "0",
         btnList: [
-            { text: "首页" },
-            { text: "社区" },
-            { text: "日记" },
-            { text: "发布" },
-            { text: "我的" }
+            { text: "首页" ,address:"/"},
+            { text: "社区" ,address:"/community"},
+            { text: "日记" ,address:"/diary"},
+            { text: "发布" ,address:"/release"},
+            { text: "我的" ,address:"/user"}
         ]
         };
     },
@@ -59,7 +64,6 @@ export default {
         width: 1200px;
         margin: 0 auto;
         .nav{
-            height: 50px;
             display: flex;
             justify-content: space-between;
             .navList{
@@ -81,18 +85,20 @@ export default {
                 .list{
                     display: flex;
                     margin: 0 20px;
-                    .btn{
-                        font-size: 20px;
-                        width: 80px;
-                        height: 50px;
-                        line-height: 50px;
-                        text-align: center;
-                        cursor: pointer;
+                    a{
+
+                        .btn{
+                            font-size: 20px;
+                            padding: 0px 20px;
+                            line-height: 50px;
+                            text-align: center;
+                            cursor: pointer;
+                        } 
                         &.active{
                             background-color: #ff8e55;
                             color: #fff;
                         }
-                    } 
+                    }
                 }
             }
             .user{
@@ -108,6 +114,7 @@ export default {
                     color: #fff;
                     line-height: 30px;
                     text-align: center;
+                    cursor: pointer;
                 }
             }
         }
