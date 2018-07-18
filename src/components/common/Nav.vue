@@ -32,7 +32,7 @@
 
 <script>
 export default {
-    name: "MainPage",
+    name: "Nav",
     components: {
 
     },
@@ -49,9 +49,7 @@ export default {
         };
     },
     methods: {
-        choose: function(e) {
-            this.isActive = e;
-        }
+        
     }
 };
 </script>
@@ -59,7 +57,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
 #Nav{
-    background-color: #ffd9d9;
+    
     .container{
         width: 1200px;
         margin: 0 auto;
