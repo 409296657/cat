@@ -1,16 +1,14 @@
 <template>
-    <div id="User">
-        <Nav isActive="4"></Nav>
+    <div id="Register">
 
     </div>
 </template>
 
 <script>
-import Nav from '@/components/common/Nav'
 export default {
-    name: 'User',
+    name: 'Register',
     components:{
-        Nav,
+        
     },
     data () {
         return {
@@ -22,7 +20,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
-#User{
+#Register{
     width: 100%;
     .container{
         width: 1200px;

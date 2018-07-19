@@ -22,8 +22,8 @@
                     </div>
                 </div>
                 <div class="user">
-                    <div class="login">登录</div>
-                    <div class="register">注册</div>
+                    <router-link :to="{path:'/login'}"><div class="login">登录</div></router-link>
+                    <router-link :to="{path:'/register'}"><div class="register">注册</div></router-link>
                 </div>
             </div>
         </div>

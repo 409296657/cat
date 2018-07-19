@@ -1,5 +1,5 @@
 <template>
-    <div id="Community">
+    <div id="Diary">
         <Nav isActive="2"></Nav>
 
     </div>
@@ -8,7 +8,7 @@
 <script>
 import Nav from '@/components/common/Nav'
 export default {
-    name: 'Community',
+    name: 'Diary',
     components:{
         Nav,
     },
@@ -22,7 +22,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
-#MainPage{
+#Diary{
     width: 100%;
     .container{
         width: 1200px;

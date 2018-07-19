@@ -9,7 +9,12 @@
                 </div>
                 <div class="flex-box">
                     <div class="pic"></div>
-                    <div class="btn">发现喵星人</div>
+                    <router-link :to="{path:''}">
+                        <div class="btn">
+                            发现喵星人
+                        </div>
+                    </router-link>
+                    
                 </div>
             </div>
         </div>
@@ -23,7 +28,7 @@
                 <Search @conditionScreen="searching"></Search>
                 <div class="content">
                     <div class="content-box" v-for="(item,index) in itemList" :key="index">
-                        <div class="btn">申请成为他的主人</div>
+                        <div class="btn" @click="showWindow">申请成为他的主人</div>
                         <div class="title">
                             <img src="@/images/Community/icon-s.png">
                             <span>标题：XXXXXXXXXXXXXX</span>
@@ -62,14 +67,47 @@
                 <div class="comment">
                     <div class="container">
                         <div class="commenting">
-                            <img src="">
-                            <input type="text">
+                            <img src="@/images/Community/cat.png">
+                            <input type="text" placeholder="说点什么...">
+                            <div class="btn">评论</div>
+                        </div>
+                        <div class="commentList">
+                            <img src="@/images/Community/cat.png">
+                            <div class="content">
+                                <div class="text">
+                                    <span>皮一下很开心:</span>aaaaa啊呵呵
+                                </div>
+                                <div class="flex-box">
+                                    <span>今天11:11</span>
+                                    <span>回复</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <Foot></Foot>
+        <div class="shadow" v-show="show==1">
+            <div class="window" :class="{show:down==1}">
+                <div class="tips">
+                    <p><i class="iconfont icon-guanbi" @click="close"></i></p>
+                    <b>温馨提示</b>
+                </div>
+                <div class="text">
+                   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;喂养喵星人可不是一件简单的事，不仅要保证它的温饱，还要时刻注意他的健康状况，更不可因为自身原因随意丢弃。你确定自己准备好了吗?</span> 
+                </div>
+                <div class="flex-box">
+                    <div class="btn" :class="{ok:count!=0}" @click="close">
+                        <router-link :to="{path:''}">
+                            我准备好了
+                            <small v-if="count!=0">{{count}}s</small>
+                        </router-link>
+                    </div>
+                    <div class="btn" @click="close">我再想想吧</div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -86,6 +124,10 @@ export default {
     },
     data () {
         return {
+            time:'',
+            count:3,
+            down:'',
+            show:'',
             itemList:[
                 {},{}
             ]
@@ -94,6 +136,26 @@ export default {
     methods:{
         searching:function(data){
             console.log(data)
+        },
+        close:function(){
+            this.down = '';
+            clearInterval(this.time);
+            setTimeout(()=>{
+                this.show = '';
+                this.count = 3;
+            },200);
+        },
+        showWindow:function(){
+            this.show = 1;
+            setTimeout(()=>{
+                this.down = 1;
+            },10);
+            this.time= setInterval(()=>{
+                this.count--;
+                if(this.count==0){
+                    clearInterval(this.time)
+                }
+            },1000)
         }
     }
 }
@@ -103,6 +165,10 @@ export default {
 <style lang="less">
 #Community{
     width: 100%;
+    position: relative;
+    input::-webkit-input-placeholder,{
+        color: #b6b6b6; 
+    }
     .banner{
 
         .container{
@@ -165,6 +231,12 @@ export default {
                     border: 2px solid #cdcdcd;
                     margin: 30px 0;
                     position: relative;
+                    &:hover{
+                        background-color: #f1f1f1;
+                        .btn{
+                            display: block;
+                        }
+                    }
                     .btn{
                         position: absolute;
                         left: 50px;
@@ -174,6 +246,8 @@ export default {
                         background-color: #ff8e55;
                         padding: 10px 26px;
                         border-radius: 5px;
+                        cursor: pointer;
+                        display: none;
                     }
                     .title{
                         line-height: 35px;
@@ -245,10 +319,149 @@ export default {
         }
     }
     .comment{
-
+        margin-bottom: 300px;
         .container{
             width: 1000px;
             margin: 0 auto;
+            .commenting{
+                display: flex;
+                align-items: center;
+                padding: 20px 0;
+                margin-top: -32px;
+                border-bottom: 1px solid #cdcdcd;
+                img{
+                    display: inline-block;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    margin: 0 10px;
+                }
+                input{
+                    width: 860px;
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 16px;
+                    text-indent: 20px;
+                    border:1px solid #cdcdcd;
+                }
+                .btn{
+                    padding: 4px 8px;
+                    border-radius: 5px;
+                    background-color: #ff8e55;
+                    color: #fff;
+                    font-size: 12px;
+                    margin: 0 20px;
+                }
+            }
+            .commentList{
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid #cdcdcd;
+                padding: 5px 10px;
+                img{
+                    display: inline-block;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    margin-right:10px;
+                }
+                .content{
+                    font-size: 13px;
+                    line-height: 20px;
+                    .text{
+
+                        span{
+                            color: #ff8e55;
+                        }
+                    }
+                    .flex-box{
+                        display: flex;
+                        justify-content: space-between;
+                        span{
+                            text-align: right;
+                            &:last-child{
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .shadow{
+        position: fixed;
+        top: 0;
+        left:0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, .2);
+        .window{
+            width: 600px;
+            height: 300px;
+            box-sizing: border-box;
+            background-color: #fff;
+            border: 4px solid #ff8e55;
+            border-radius: 8px;
+            position: absolute;
+            margin-left: -300px;
+            margin-top: -150px;
+            left: 50%;
+            top: -150px;
+            transition: top .3s;
+            &.show{
+                top: 50%;
+            }
+            .tips{
+                padding-left: 18px;
+                p{
+                    text-align: right;
+                    margin: 0;
+                    i{
+                        color: #9a9a9a;
+                        font-size: 34px;
+                        cursor: pointer;
+                    }
+                }
+                b{
+                    font-size: 22px;
+                }
+            }
+            .text{
+                padding: 25px 50px;
+                font-size: 14px;
+                color: #363636;
+            }
+            .flex-box{
+                display: flex;
+                justify-content: space-between;
+                width: 460px;
+                margin:0 auto;
+                margin-top: 20px;
+                .btn{
+                    height: 40px;
+                    width: 150px;
+                    font-size: 18px;
+                    line-height: 40px;
+                    text-align: center;
+                    color: #fff;
+                    border-radius: 5px;
+                    background-color: #ff8e55;
+                    cursor: pointer;
+                    transition: background-color .3s;
+                    &.ok{
+                        background-color: #a9a9a9;
+                        cursor: not-allowed;
+                        a{
+                            cursor: not-allowed;
+                        }
+                    }
+                    a{
+                        color: #fff;
+                    }
+                }
+            }
         }
     }
 }
