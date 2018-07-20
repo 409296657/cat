@@ -44,7 +44,7 @@ export default {
             { text: "社区" ,address:"/community"},
             { text: "日记" ,address:"/diary"},
             { text: "发布" ,address:"/release"},
-            { text: "我的" ,address:"/user"}
+            { text: "我的" ,address:"/user/ob"}
         ]
         };
     },

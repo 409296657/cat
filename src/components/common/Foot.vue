@@ -1,17 +1,17 @@
 <template>
     <div id="Foot">
         <div class="container">
-            <div class="flex-box item">
+            <div class="foot-box item">
                 <div class="logo">
 
                 </div>
             </div>
-            <div class="flex-box info">
+            <div class="foot-box info">
                 <p>联系我们 CONTANT</p>
                 <h3>E-mail:XXXXXX@XX.com</h3>
                 <h3>QQ:XXXXXXXXX</h3>
             </div>
-            <div class="flex-box item">
+            <div class="foot-box item">
                 <div class="wx">
                     <p>微信公众号</p>
                         <div class="QR">
@@ -67,7 +67,7 @@ export default {
         width: 1200px;
         margin: 0 auto;
         display: flex;
-        .flex-box{
+        .foot-box{
             box-sizing: border-box;
             width: 400px;
             .logo{

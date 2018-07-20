@@ -1,14 +1,12 @@
 <template>
-    <div id="User">
+    <div id="Message">
         <Nav isActive="4"></Nav>
         <div class="content">
             <div class="container">
                 <div class="userList">
-                    <UserList isActive="0"></UserList>
+                    <UserList isActive="1"></UserList>
                 </div>
-                <div class="body">
-                    <router-view ></router-view>
-                </div>
+                <div class="body"></div>
             </div>
         </div>
     </div>
@@ -18,7 +16,7 @@
 import Nav from '@/components/common/Nav'
 import UserList from '@/components/common/UserList'
 export default {
-    name: 'User',
+    name: 'Message',
     components:{
         Nav,
         UserList
@@ -33,7 +31,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
-#User{
+#Message{
     width: 100%;
     .content{
         margin-top: 40px;

@@ -5,8 +5,11 @@ import Diary from '@/pages/Diary/Diary'
 import MainPage from '@/pages/MainPage/MainPage'
 import Release from '@/pages/Release/Release'
 import User from '@/pages/User/User'
+import AboutAdopt from '@/pages/User/AboutAdopt'
+import AboutCat from '@/pages/User/AboutCat'
+import Collection from '@/pages/User/Collection'
+import Message from '@/pages/User/Message'
 import Login from '@/pages/Login/Login'
-import Forget from '@/pages/Login/Forget'
 import Password from '@/pages/Login/Password'
 import Register from '@/pages/Login/Register'
 
@@ -32,13 +35,28 @@ export default new Router({
       name: 'Release',
       component: Release
     },{
-      path: '/user',
+      path: '/user/:id',
       name: 'User',
-      component: User
-    },{
-      path: '/forget',
-      name: 'Forget',
-      component: Forget
+      component: User,
+      children:[
+        {
+          path: 'aboutadopt',
+          name: 'AboutAdopt',
+          component: AboutAdopt
+        },{
+          path: 'aboutcat',
+          name: 'AboutCat',
+          component: AboutCat
+        },{
+          path: 'collection',
+          name: 'Collection',
+          component: Collection
+        },{
+          path: 'message',
+          name: 'Message',
+          component: Message
+        },
+      ]
     },{
       path: '/login',
       name: 'Login',
