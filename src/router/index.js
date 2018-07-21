@@ -38,25 +38,22 @@ export default new Router({
       path: '/user/:id',
       name: 'User',
       component: User,
-      children:[
-        {
-          path: 'aboutadopt',
-          name: 'AboutAdopt',
-          component: AboutAdopt
-        },{
-          path: 'aboutcat',
-          name: 'AboutCat',
-          component: AboutCat
-        },{
-          path: 'collection',
-          name: 'Collection',
-          component: Collection
-        },{
-          path: 'message',
-          name: 'Message',
-          component: Message
-        },
-      ]
+    },{
+      path: '/user/:id/aboutadopt',
+      name: 'AboutAdopt',
+      component: AboutAdopt
+    },{
+      path: '/user/:id/aboutcat',
+      name: 'AboutCat',
+      component: AboutCat
+    },{
+      path: '/user/:id/collection',
+      name: 'Collection',
+      component: Collection
+    },{
+      path: '/user/:id/message',
+      name: 'Message',
+      component: Message
     },{
       path: '/login',
       name: 'Login',
