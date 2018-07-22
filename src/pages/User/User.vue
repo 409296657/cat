@@ -48,17 +48,20 @@
                 </div>
             </div>
         </div>
+        <Foot></Foot>
     </div>
 </template>
 
 <script>
 import Nav from '@/components/common/Nav'
 import UserList from '@/components/common/UserList'
+import Foot from '@/components/common/Foot'
 export default {
     name: 'User',
     components:{
         Nav,
-        UserList
+        UserList,
+        Foot
     },
     data () {
         return {
@@ -90,7 +93,7 @@ export default {
     .content{
         margin-top: 40px;
         .container{
-            width: 1080px;
+            width: 1100px;
             margin: 0 auto;
             display: flex;
             .userList{
@@ -100,6 +103,7 @@ export default {
                 flex: 1;
                 margin-left: 30px;
                 color: #9a9a9a;
+                margin-bottom: 190px;
                 .flex-box{
                     display: flex;
                     align-items: center;

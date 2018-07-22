@@ -12,6 +12,7 @@
                         <span :class="{active:isActive==1}" @click="isActive=1">收到的赞</span>
                     </div>
                     <div class="card" v-if="isActive==0">
+                        <div class="icon"></div>
                         <div class="flex-box" v-for="(item,index) in commentList" :key="index">
                             <img src="@/images/6.jpg">
                             <div class="content">
@@ -28,21 +29,38 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card" v-if="isActive==1">2</div>
+                    <div class="card" v-if="isActive==1">
+                        <div class="icon2"></div>
+                        <div class="flex-box" v-for="(item,index) in commentList" :key="index">
+                            <img src="@/images/6.jpg">
+                            <div class="content">
+                                <div class="head">
+                                    <b>昵称</b>
+                                    <span>2018年11月11日 11:11</span>
+                                </div>
+                                <div class="text">
+                                    赞了我的日记
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <Foot></Foot>
     </div>
 </template>
 
 <script>
 import Nav from '@/components/common/Nav'
 import UserList from '@/components/common/UserList'
+import Foot from '@/components/common/Foot'
 export default {
     name: 'Message',
     components:{
         Nav,
-        UserList
+        UserList,
+        Foot
     },
     data () {
         return {
@@ -62,7 +80,7 @@ export default {
     .content{
         margin-top: 40px;
         .container{
-            width: 1080px;
+            width: 1100px;
             margin: 0 auto;
             display: flex;
             .userList{
@@ -83,7 +101,30 @@ export default {
                     }
                 }
                 .card{
-
+                    position: relative;
+                    min-height: 690px;
+                    .icon{
+                        position: absolute;
+                        top: -8px;
+                        left: 40px;
+                        background-color: #fff;
+                        width: 16px;
+                        height: 16px;
+                        border: 1px solid;
+                        border-color: #d0d0d0 #d0d0d0 transparent transparent;
+                        transform:rotate(-45deg);
+                    }
+                    .icon2{
+                        position: absolute;
+                        top: -8px;
+                        left: 126px;
+                        background-color: #fff;
+                        width: 16px;
+                        height: 16px;
+                        border: 1px solid;
+                        border-color: #d0d0d0 #d0d0d0 transparent transparent;
+                        transform:rotate(-45deg);
+                    }
                     .flex-box{
                         display: flex;
                         border: 1px solid #d0d0d0;
@@ -103,7 +144,7 @@ export default {
                             flex: 1;
                             padding-right: 10px;
                             .head{
-                                margin: 10px 0;
+                                margin: 10px 0 5px 0;
                                 display: flex;
                                 justify-content: space-between;
                             }
