@@ -27,7 +27,7 @@
                                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒</span>
                             </div>
                             <div class="position-box">
-                                <router-link :to="{ path:'' }">查看全部></router-link>
+                                <router-link :to="{ path:'/diary/123' }">查看全部></router-link>
                             </div>
                         </div>
                         <div class="pic">

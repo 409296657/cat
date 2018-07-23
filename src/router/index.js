@@ -12,6 +12,8 @@ import Message from '@/pages/User/Message'
 import Login from '@/pages/Login/Login'
 import Password from '@/pages/Login/Password'
 import Register from '@/pages/Login/Register'
+import CommunityDetailed from '@/pages/Community/CommunityDetailed'
+import DiaryDetailed from '@/pages/Diary/DiaryDetailed'
 
 Vue.use(Router)
 
@@ -23,9 +25,15 @@ export default new Router({
       name: 'Community',
       component: Community
     },{
+      path: '/community/:id',
+      component: CommunityDetailed
+    },{
       path: '/diary',
       name: 'Diary',
       component: Diary
+    },{
+      path: '/diary/:id',
+      component: DiaryDetailed
     },{
       path: '/',
       name: 'MainPage',
