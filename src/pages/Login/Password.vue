@@ -10,22 +10,25 @@
             <div class="flex-box">
                 <div class="content">
                     <div class="item-box">
-                        <span>新密码：</span><input type="password" placeholder="请设置新密码">
-                        <p class="warn" v-show="nickname">*该昵称已经存在</p>
+                        <span>新密码：</span><input type="password" placeholder="请设置新密码" v-model="psw" @blur="checkPsw">
+                        <p class="warn" v-if="checkpsw==1">*请输入密码</p>
+                        <p class="warn" v-if="checkpsw==2">*密码最少6位</p>
                     </div>
                     <div class="item-box">
-                        <span>新密码：</span><input type="password" placeholder="请再次输入新密码">
-                        <p class="warn" v-show="nickname">*该昵称已经存在</p>
+                        <span>新密码：</span><input type="password" placeholder="请再次输入新密码" v-model="psw2" @blur="checkPsw2">
+                        <p class="warn" v-if="checkpsw2==1">*请再次输入密码</p>
+                        <p class="warn" v-if="checkpsw2==2">*两次输入密码不一致</p>
                     </div>
                     <div class="item-box">
-                        <span>邮箱：</span><input type="text" placeholder="请输入您注册时使用的邮箱">
-                        <p class="warn" v-show="nickname">*该昵称已经存在</p>
+                        <span>邮箱：</span><input type="text" placeholder="请输入您注册时使用的邮箱" v-model="email" @blur="checkEmail">
+                        <p class="warn" v-show="checkemail==1">*请输入邮箱地址</p>
+                        <p class="warn" v-show="checkemail==2">*请输入正确的邮箱地址</p>
                     </div>
                     <div class="item-box">
                         <span>验证码：</span><input type="text" placeholder="请输入正确的验证码">
                         <div class="botton">获取验证码</div>
                     </div>
-                    <div class="btn">
+                    <div class="btn" @click="submit">
                         确认修改
                     </div>
                     <p>改变主意，直接<router-link :to="{path:'/login'}">登录</router-link></p>
@@ -43,8 +46,62 @@ export default {
     },
     data () {
         return {
-            nickname:'1',
+            checkemail:'',
+            checkpsw:'',
+            checkpsw2:'',
+            email:'',
+            psw2:'',
+            psw:'',
         }
+    },
+    methods:{
+        submit:function(){
+            if(!this.psw2){
+                this.checkpsw2 = 1;
+            };
+            if(!this.email){
+                this.checkemail = 1;
+            };
+            if(!this.psw){
+                this.checkpsw = 1;
+            };
+            if(!this.checkpsw2&&!this.checkpsw&&!this.checkemail){
+                alert('ok')
+            }
+        },
+        checkPsw:function(){
+            if(!this.psw){
+                this.checkpsw = 1;
+            }else if(this.psw.length<6){
+                this.checkpsw = 2;
+            }else{
+                this.checkpsw = '';
+            }
+            if(this.psw2&&this.psw!=this.psw2){
+                this.checkpsw2 = 2;
+            }else if(this.psw2&&this.psw==this.psw2){
+                this.checkpsw2 = '';
+            }
+        },
+        checkPsw2:function(){
+            if(!this.psw2){
+                this.checkpsw2 = 1;
+            }else if(this.psw!=this.psw2){
+                this.checkpsw2 = 2;
+            }else{
+                this.checkpsw2 = '';
+            }
+        },
+        checkEmail:function(){
+            const e = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+            if(!this.email){
+                this.checkemail = 1;
+            }else if(!e.test(this.email)){
+                this.checkemail = 2;
+            }else{
+                this.checkemail = '';
+            }
+        },
     }
 }
 </script>

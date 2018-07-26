@@ -98,11 +98,9 @@
                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;喂养喵星人可不是一件简单的事，不仅要保证它的温饱，还要时刻注意他的健康状况，更不可因为自身原因随意丢弃。你确定自己准备好了吗?</span> 
                 </div>
                 <div class="flex-box">
-                    <div class="btn" :class="{ok:count!=0}" @click="close">
-                        <router-link :to="{path:''}">
-                            我准备好了
-                            <small v-if="count!=0">{{count}}s</small>
-                        </router-link>
+                    <div class="btn" :class="{ok:count!=0}" @click="submit">
+                        我准备好了
+                        <small v-if="count!=0">({{count}}s)</small>
                     </div>
                     <div class="btn" @click="close">我再想想吧</div>
                 </div>
@@ -134,6 +132,11 @@ export default {
         }
     },
     methods:{
+        submit:function(){
+            if(!this.count){
+                alert(1)
+            }
+        },
         searching:function(data){
             console.log(data)
         },

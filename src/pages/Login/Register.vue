@@ -8,18 +8,21 @@
                 <b>注册账号</b>
             </div>
             <div class="flex-box">
-                <div class="content">
+                <div class="content" ref="form">
                     <div class="item-box">
-                        <span>昵称：</span><input type="password" placeholder="请输入你的昵称">
-                        <p class="warn" v-show="nickname">*该昵称已经存在</p>
+                        <span>昵称：</span><input type="text" placeholder="请输入你的昵称" v-model="name" @blur="checkName">
+                        <p class="warn" v-if="nickname==1">*请输入昵称</p>
+                        <p class="warn" v-else-if="nickname==2">*该昵称已经存在2</p>
                     </div>
                     <div class="item-box">
-                        <span>密码：</span><input type="password" placeholder="请输入6位以上字符密码">
-                        <p class="warn" v-show="nickname">*该昵称已经存在</p>
+                        <span>密码：</span><input type="password" placeholder="请输入6位以上字符密码" v-model="psw" @blur="checkPsw">
+                        <p class="warn" v-if="checkpsw==1">*请输入密码</p>
+                        <p class="warn" v-if="checkpsw==2">*密码最少6位</p>
                     </div>
                     <div class="item-box">
-                        <span>邮箱：</span><input type="text" placeholder="请输入您的常用邮箱">
-                        <p class="warn" v-show="nickname">*该昵称已经存在</p>
+                        <span>邮箱：</span><input type="text" placeholder="请输入您的常用邮箱" v-model="email" @blur="checkEmail">
+                        <p class="warn" v-show="checkemail==1">*请输入邮箱地址</p>
+                        <p class="warn" v-show="checkemail==2">*请输入正确的邮箱地址</p>
                     </div>
                     <div class="item-box">
                         <span>验证码：</span><input type="text" placeholder="请输入验证码">
@@ -27,7 +30,7 @@
                     </div>
                     <p>点击注册账号，表示同意<router-link :to="{path:''}"> 服务条款 </router-link>和<router-link :to="{path:''}"> 隐私条款 </router-link></p>
 
-                    <div class="btn">
+                    <div class="btn" @click="submit">
                         注册账号
                     </div>
                 </div>
@@ -44,7 +47,54 @@ export default {
     },
     data () {
         return {
-            nickname:'1',
+            checkemail:'',
+            checkpsw:'',
+            nickname:'',
+            name:null,
+            psw:null,
+            email:null,
+        }
+    },
+    methods: {
+        submit:function(){
+            if(!this.name){
+                this.nickname = 1;
+            };
+            if(!this.email){
+                this.checkemail = 1;
+            };
+            if(!this.psw){
+                this.checkpsw = 1;
+            };
+            if(!this.nickname&&!this.checkpsw&&!this.checkemail){
+                alert('ok')
+            }
+        },
+        checkPsw:function(){
+            if(!this.psw){
+                this.checkpsw = 1;
+            }else if(this.psw.length<6){
+                this.checkpsw = 2;
+            }else{
+                this.checkpsw = '';
+            }
+        },
+        checkEmail:function(){
+            const e = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+            if(!this.email){
+                this.checkemail = 1;
+            }else if(!e.test(this.email)){
+                this.checkemail = 2;
+            }else{
+                this.checkemail = '';
+            }
+        },
+        checkName:function(){
+            if(!this.name){
+                this.nickname = 1;
+            }else{
+                this.nickname = '';
+            }
         }
     }
 }
